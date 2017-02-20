@@ -13,12 +13,12 @@ public class TweetConsumer {
 
     private ConfigReader configReader = new ConfigReader();
 
-    public void consumeTweets() {
+    public void consumeTweets(String groupId) {
         String kafkaServers = configReader.getKafkaServers();
         String kafkaTopic = configReader.getKafkaTopic();
         Properties props = new Properties();
         props.put("bootstrap.servers", kafkaServers);
-        props.put("group.id", "group-1");
+        props.put("group.id", groupId);
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
         props.put("auto.offset.reset", "earliest");
@@ -30,8 +30,7 @@ public class TweetConsumer {
         while (true) {
             ConsumerRecords<String, Tweet> records = kafkaConsumer.poll(100);
             for (ConsumerRecord<String, Tweet> record : records) {
-                System.out.printf("offset = %d, value = %s", record.offset(), record.value().toString());
-                System.out.println();
+                System.out.println("Received" + record.value().toString());
             }
         }
     }

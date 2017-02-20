@@ -3,8 +3,6 @@ package com.knoldus.twitter;
 import com.knoldus.kafka.TweetProducer;
 import com.knoldus.utils.ConfigReader;
 import com.knoldus.utils.Tweet;
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
 import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
